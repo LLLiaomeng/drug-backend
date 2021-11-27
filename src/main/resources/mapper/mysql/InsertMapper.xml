@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kagemusha.drugdemo.mapper.mysql.InsertMapper">
+    <select id="insertPerson" parameterType="com.kagemusha.drugdemo.entity.Person" resultType="java.lang.Integer">
+        SELECT insertPerson(#{cardId},#{name}, #{age}, #{gender}, #{birthday}, #{weight}, #{height});
+    </select>
+    <select id="insertMedicalOrder" parameterType="com.kagemusha.drugdemo.entity.MedicalOrder" resultType="java.lang.Integer">
+        SELECT insertMO(#{moId}, #{cardId}, #{bsCondition}, #{hospital}, #{department}, #{doctorWay}, #{startDate}, #{endDate}, #{recordDate});
+    </select>
+    <select id="insertFormula" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT insertFormula(#{moId});
+    </select>
+    <select id="insertDrug" parameterType="com.kagemusha.drugdemo.entity.Drug" resultType="java.lang.Integer">
+        SELECT insertDrug(#{formulaId}, #{name}, #{route}, #{dosageNum}, #{dosageUnit}, #{freqNum}, #{freqUnit}, #{amount}, #{code});
+    </select>
+    <select id="insertProject" parameterType="com.kagemusha.drugdemo.entity.Project" resultType="java.lang.Integer">
+        SELECT insertProject(#{moId}, #{name}, #{code}, #{amount});
+    </select>
+    <select id="insertCrowd" resultType="java.lang.Integer">
+        SELECT insertCrowd(#{id}, #{name});
+    </select>
+    <select id="insertSpecialCrowd" resultType="java.lang.Integer">
+        SELECT insertSpecialCrowd(#{id}, #{name});
+    </select>
+    <select id="insertAllergy" resultType="java.lang.Integer">
+        SELECT insertAllergy(#{id}, #{name});
+    </select>
+    <select id="insertDisease" resultType="java.lang.Integer">
+        SELECT insertDisease(#{id}, #{name});
+    </select>
+    <select id="insertSymptom" resultType="java.lang.Integer">
+        SELECT insertSymptom(#{id}, #{name});
+    </select>
+    <select id="deleteMO" resultType="java.lang.Integer">
+        SELECT deleteMO(#{id});
+    </select>
+    <select id="deletePerson" resultType="java.lang.Integer">
+        SELECT deletePerson(#{id});
+    </select>
+
+</mapper>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kagemusha.drugdemo.mapper.mysql.SelectMapper">
+    <select id="selectPerson" resultType="com.kagemusha.drugdemo.entity.Person">
+        SELECT CardId, `Name`, Age, Gender, Birthday, Weight, Height From Person;
+    </select>
+    <select id="selectMedicalOrder" parameterType="java.lang.Integer" resultType="com.kagemusha.drugdemo.entity.MedicalOrder">
+        SELECT m.MOId, m.CardId, m.BSCondition, m.Hospital, m.Department, m.DoctorWay, m.StartDate, m.EndDate, m.RecordDate FROM MedicalOrder m WHERE m.CardId = #{cardId};
+    </select>
+    <select id="selectMedicalOrderLatest" parameterType="java.lang.Integer" resultType="com.kagemusha.drugdemo.entity.MedicalOrder">
+        SELECT m.MOId, m.CardId, m.BSCondition, m.Hospital, m.Department, m.DoctorWay, m.StartDate, m.EndDate
+        FROM MedicalOrder m
+        WHERE m.MOId = (SELECT max(m2.MOId) FROM MedicalOrder m2 WHERE m2.CardId = #{cardId});
+    </select>
+    <select id="selectFormula" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT f.FormulaId FROM Formula f WHERE f.MOId = #{moId};
+    </select>
+    <select id="selectDrug" parameterType="java.lang.Integer" resultType="com.kagemusha.drugdemo.entity.Drug">
+        SELECT d.Name, d.Route, d.DosageNum, d.DosageUnit, d.FreqNum, d.FreqUnit, d.Amount, d.Code FROM Drug d WHERE d.FormulaId = #{formulaId};
+    </select>
+    <select id="selectProject" parameterType="java.lang.Integer" resultType="com.kagemusha.drugdemo.entity.Project">
+        SELECT p.Name, p.Code, p.Amount FROM Project p WHERE p.MOId = #{moId};
+    </select>
+    <select id="selectCrowd" parameterType="java.lang.Integer" resultType="String">
+        SELECT c.Name FROM Crowd c INNER JOIN PersonCrowd pc ON pc.CrowdId = c.CrowdId WHERE pc.CardId = #{cardId};
+    </select>
+    <select id="selectSpecialCrowd" parameterType="java.lang.Integer" resultType="String">
+        SELECT s.Name FROM SpecialCrowd s INNER JOIN PersonSpecialCrowd ps ON ps.SpecialCrowdId = s.SpecialCrowdId WHERE ps.CardId = #{cardId};
+    </select>
+    <select id="selectAllergy" parameterType="java.lang.Integer" resultType="String">
+        SELECT a.Name FROM Allergy a INNER JOIN PersonAllergy pa ON pa.AllergyId = a.AllergyId WHERE pa.CardId = #{cardId};
+    </select>
+    <select id="selectDisease" parameterType="java.lang.Integer" resultType="String">
+        SELECT d.Name FROM Disease d INNER JOIN MODisease md ON md.DiseaseId = d.DiseaseId WHERE md.MOId = #{moId};
+    </select>
+    <select id="selectSymptom" parameterType="java.lang.Integer" resultType="String">
+        SELECT s.Name FROM Symptom s INNER JOIN MOSymptom ms ON ms.SymptomId = s.SymptomId WHERE ms.MOId = #{moId};
+    </select>
+</mapper>

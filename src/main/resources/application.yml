@@ -1,0 +1,28 @@
+#端口号
+server:
+  port: 8018
+
+spring:
+  application:
+    name: springboot-mybatis-neo4j #服务名
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: html5
+    encoding: UTF-8
+
+  datasource:
+    neo:
+      driver-class-name: org.neo4j.jdbc.http.HttpDriver
+      username: neo4j
+      password: 20200202
+      jdbc-url: jdbc:neo4j:http://localhost:7474
+    mysql:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: root
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/hospital?useUnicode=true&useJDBCCompliantTimezoneShift=true&serverTimezone=UTC&characterEncoding=utf8&allowMultiQueries=true
+
+mybatis:
+  mapper-locations: classpath:/mapper/mysql/*.xml, classpath:/mapper/neo/*.xml
+  type-aliases-package: com.kagemusha.drugdemo.entity

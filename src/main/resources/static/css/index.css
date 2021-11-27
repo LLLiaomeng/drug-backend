@@ -1,0 +1,63 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+html, body {
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(rgb(14, 87, 75), #092b4a);
+    /* background-color: #092b4a; */
+}
+.wwrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+    /* background-color: red; */
+}
+.wsearWrap {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    height: 80px;
+    /* background-color: black; */
+    
+}
+.wchart {
+    width: 100%;
+    height: 700px;
+    /* background-color: green; */
+}
+.wsearch {
+    width: 45%;
+    height: 100;
+    text-align: center;
+    font-size: 16px;
+    color: #999;
+    outline: none;
+    border: 0;
+    border-top-left-radius: 20px;
+    /* border-top-right-radius: 8px; */
+    border-bottom-left-radius: 20px;
+    /* border-bottom-right-radius: 8px; */
+}
+.wbtn {
+    width: 8%;
+    height: 55%;
+    outline: none;
+    border: 0;
+    background-color: #3385ff;
+    cursor: pointer;
+    color: #fff;
+    /* letter-spacing: 2px; */
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    font-size: 18px;
+}
+.btn:hover {
+    background-color: #5a9bfc;
+}
