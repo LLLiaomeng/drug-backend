@@ -3,8 +3,6 @@ package com.kagemusha.drugdemo.utils;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.kagemusha.drugdemo.entity.Item;
-import com.kagemusha.drugdemo.entity.Result;
-import com.kagemusha.drugdemo.entity.neo.AgeRes;
 import lombok.Data;
 
 import java.util.Iterator;
