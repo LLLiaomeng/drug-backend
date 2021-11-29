@@ -96,7 +96,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/check")
-    public Response check(@RequestBody Info info){
+    public List<Item> check(@RequestBody Info info){
         try{
             info.calculateAge();
         }catch (ParseException e) { // 捕捉到了解析异常
@@ -122,7 +122,6 @@ public class MainController {
         }
         String gender = info.getPerson().getGender();
         int age = info.getPerson().getAge();
-        Response response = new Response();
         List<Item> itemList = new ArrayList<>();
         String drugString = addQuote(drugNameList).toString();
         String diseaseString = addQuote(diseaseList).toString();
@@ -139,7 +138,6 @@ public class MainController {
         itemList.add(DrugService.injectionCompatibilityCheck(formulaStringList));
         itemList.add(DrugService.specialCrowdCheck(drugString, specialCrowdString));
         itemList.removeAll(Collections.singleton(null));
-        response.setItemList(itemList);
-        return response;
+        return itemList;
     }
 }
